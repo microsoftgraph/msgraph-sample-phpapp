@@ -21,11 +21,11 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a href="/" class="nav-link<?php echo ($_SERVER['REQUEST_URI'] == '/' ? 'active' : '');?>">Home</a>
+              <a href="/" class="nav-link<?php echo ($_SERVER['REQUEST_URI'] == '/' ? ' active' : '');?>">Home</a>
             </li>
             <?php if(isset($username)) { ?>
               <li class="nav-item" data-turbolinks="false">
-              <a href="/calendar" class="nav-link<?php echo ($_SERVER['REQUEST_URI'] == '/calendar' ? 'active' : '');?>">Calendar</a>
+              <a href="/calendar" class="nav-link<?php echo ($_SERVER['REQUEST_URI'] == '/calendar' ? ' active' : '');?>">Calendar</a>
               </li>
             <?php } ?>
           </ul>
