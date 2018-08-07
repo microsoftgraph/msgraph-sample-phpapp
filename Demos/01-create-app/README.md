@@ -59,53 +59,53 @@ Start by creating the global layout for the app. Create a new file in the  `./re
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a href="/" class="nav-link<?php echo ($_SERVER['REQUEST_URI'] == '/' ? ' active' : '');?>">Home</a>
+              <a href="/" class="nav-link {{$_SERVER['REQUEST_URI'] == '/' ? ' active' : ''}}">Home</a>
             </li>
-            <?php if(isset($username)) { ?>
+            @if(isset($userName))
               <li class="nav-item" data-turbolinks="false">
-              <a href="/calendar" class="nav-link<?php echo ($_SERVER['REQUEST_URI'] == '/calendar' ? ' active' : '');?>">Calendar</a>
+                <a href="/calendar" class="nav-link{{$_SERVER['REQUEST_URI'] == '/calendar' ? ' active' : ''}}">Calendar</a>
               </li>
-            <?php } ?>
+            @endif
           </ul>
           <ul class="navbar-nav justify-content-end">
             <li class="nav-item">
               <a class="nav-link" href="https://developer.microsoft.com/graph/docs/concepts/overview" target="_blank"><i class="fas fa-external-link-alt mr-1"></i>Docs</a>
             </li>
-            <?php if(isset($username)) { ?>
+            @if(isset($userName))
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                  <?php if(isset($user_avatar)) { ?>
-                    <img src="<?php echo $user_avatar ?>" class="rounded-circle align-self-center mr-2" style="width: 32px;">
-                  <?php } else { ?>
+                  @if(isset($user_avatar))
+                    <img src="{{ $user_avatar }}" class="rounded-circle align-self-center mr-2" style="width: 32px;">
+                  @else
                     <i class="far fa-user-circle fa-lg rounded-circle align-self-center mr-2" style="width: 32px;"></i>
-                  <?php } ?>
+                  @endif
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <h5 class="dropdown-item-text mb-0"><?php echo $user_name ?></h5>
-                  <p class="dropdown-item-text text-muted mb-0"><?php echo $user_email ?></p>
+                  <h5 class="dropdown-item-text mb-0">{{ $userName }}</h5>
+                  <p class="dropdown-item-text text-muted mb-0">{{ $userEmail }}</p>
                   <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">Sign Out</a>
+                  <a href="/signout" class="dropdown-item">Sign Out</a>
                 </div>
               </li>
-            <?php } else { ?>
+            @else
               <li class="nav-item">
-                <a href="#" class="nav-link">Sign In</a>
+                <a href="/signin" class="nav-link">Sign In</a>
               </li>
-            <?php } ?>
+            @endif
           </ul>
         </div>
       </div>
     </nav>
     <main role="main" class="container">
-      <?php if(isset($errors)) {
-        foreach ($errors as $error) { ?>
-          <div class="alert alert-danger" role="alert">
-            <p class="mb-3"><?php echo $error['message'] ?></p>
-            <?php if(isset($error['debug'])) { ?>
-              <pre class="alert-pre border bg-light p-2"><code><?php echo $error['debug'] ?></code></pre>
-            <?php } ?>
-          </div>
-      <?php }} ?>
+      @if(session('error'))
+        <div class="alert alert-danger" role="alert">
+          <p class="mb-3">{{ session('error') }}</p>
+          @if(session('errorDetail'))
+            <pre class="alert-pre border bg-light p-2"><code>{{ session('errorDetail') }}</code></pre>
+          @endif
+        </div>
+      @endif
+
       @yield('content')
     </main>
   </body>
@@ -137,14 +137,55 @@ Now update the default page. Open the `./resources/views/layouts/welcome.blade.p
 <div class="jumbotron">
   <h1>PHP Graph Tutorial</h1>
   <p class="lead">This sample app shows how to use the Microsoft Graph API to access Outlook and OneDrive data from PHP</p>
-  <?php if(isset($username)) { ?>
-    <h4>Welcome <?php echo $user_name ?>!</h4>
+  @if(isset($userName))
+    <h4>Welcome {{ $userName }}!</h4>
     <p>Use the navigation bar at the top of the page to get started.</p>
-  <?php } else { ?>
-    <a href="#" class="btn btn-primary btn-large">Click here to sign in</a>
-  <?php } ?>
+  @else
+    <a href="/signin" class="btn btn-primary btn-large">Click here to sign in</a>
+  @endif
 </div>
 @endsection
+```
+
+Next, add a controller for the home page. Create a new file in the `./app/Http/Controllers` directory named `HomeController.php` and add the following code.
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class HomeController extends Controller
+{
+  public function welcome()
+  {
+    $viewData = [];
+
+    // Check for flash errors
+    if (session('error')) {
+      $viewData['error'] = session('error');
+      $viewData['errorDetail'] = session('errorDetail');
+    }
+
+    if (session('userName'))
+    {
+      $viewData['userName'] = session('userName');
+      $viewData['userEmail'] = session('userEmail');
+    }
+
+    return view('welcome', $viewData);
+  }
+}
+```
+
+Finally, update the route in `./routes/web.php` to use the new controller. Replace the entire contents of this file with the following.
+
+```php
+<?php
+
+Route::get('/', 'HomeController@welcome');
 ```
 
 Save all of your changes and restart the server. Now, the app should look very different.
