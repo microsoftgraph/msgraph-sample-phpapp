@@ -13,6 +13,14 @@ class TokenCache {
     ]);
   }
 
+  public function updateTokens($accessToken) {
+    session([
+      'accessToken' => $accessToken->getToken(),
+      'refreshToken' => $accessToken->getRefreshToken(),
+      'tokenExpires' => $accessToken->getExpires()
+    ]);
+  }
+
   public function clearTokens() {
     session()->forget('accessToken');
     session()->forget('refreshToken');
@@ -53,7 +61,7 @@ class TokenCache {
         ]);
 
         // Store the new values
-        $this->storeTokens($newToken);
+        $this->updateTokens($newToken);
 
         return $newToken->getToken();
       }

@@ -254,7 +254,19 @@ At this point your application has an access token, which is sent in the `Author
 
 However, this token is short-lived. The token expires an hour after it is issued. This is where the refresh token becomes useful. The refresh token allows the app to request a new access token without requiring the user to sign in again. Update the token management code to implement token refresh.
 
-Open `./app/TokenStore/TokenCache.php` and replace the existing `getAccessToken` function with the following.
+Open `./app/TokenStore/TokenCache.php` and add the following function to the `TokenCache` class.
+
+```php
+public function updateTokens($accessToken) {
+  session([
+    'accessToken' => $accessToken->getToken(),
+    'refreshToken' => $accessToken->getRefreshToken(),
+    'tokenExpires' => $accessToken->getExpires()
+  ]);
+}
+```
+
+Then replace the existing `getAccessToken` function with the following.
 
 ```php
 public function getAccessToken() {
@@ -289,7 +301,7 @@ public function getAccessToken() {
       ]);
 
       // Store the new values
-      $this->storeTokens($newToken);
+      $this->updateTokens($newToken);
 
       return $newToken->getToken();
     }
