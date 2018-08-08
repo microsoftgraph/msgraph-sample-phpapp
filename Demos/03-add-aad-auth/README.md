@@ -155,7 +155,7 @@ try {
 
 The new code creates a `Graph` object, assigns the access token, then uses it to request the user's profile. It adds the user's display name to the temporary output for testing.
 
-### Storing the tokens
+## Storing the tokens
 
 Now that you can get tokens, it's time to implement a way to store them in the app. Since this is a sample app, for simplicity's sake, you'll store them in the session. A real-world app would use a more reliable secure storage solution, like a database.
 
@@ -221,7 +221,7 @@ try {
 }
 ```
 
-### Implement sign-out
+## Implement sign-out
 
 Before you test this new feature, add a way to sign out. Add the following action to the `AuthController` class.
 
@@ -248,7 +248,7 @@ Click the user avatar in the top right corner to access the **Sign Out** link. C
 
 ![A screenshot of the dropdown menu with the Sign Out link](/Images/add-aad-auth-02.png)
 
-### Refreshing tokens
+## Refreshing tokens
 
 At this point your application has an access token, which is sent in the `Authorization` header of API calls. This is the token that allows the app to access the Microsoft Graph on the user's behalf.
 

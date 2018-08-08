@@ -6,7 +6,7 @@ Before you start this demo, you should have [PHP](http://php.net/downloads.php),
 
 > **Note:** This tutorial was written with PHP version 7.2. The steps in this guide may work with other versions, but that has not been tested.
 
-Open your CLI, navigate to a directory where you have rights to create files, and run the following command to create a new PHP app.
+Open your command-line interface (CLI), navigate to a directory where you have rights to create files, and run the following command to create a new PHP app.
 
 ```Shell
 laravel new graph-tutorial
