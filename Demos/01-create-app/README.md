@@ -147,6 +147,30 @@ Now update the default page. Open the `./resources/views/layouts/welcome.blade.p
 @endsection
 ```
 
+Update the base `Controller` class in `./app/Http/Controllers/Controller.php` by adding the following function to the class.
+
+```php
+public function loadViewData()
+{
+  $viewData = [];
+
+  // Check for flash errors
+  if (session('error')) {
+    $viewData['error'] = session('error');
+    $viewData['errorDetail'] = session('errorDetail');
+  }
+
+  // Check for logged on user
+  if (session('userName'))
+  {
+    $viewData['userName'] = session('userName');
+    $viewData['userEmail'] = session('userEmail');
+  }
+
+  return $viewData;
+}
+```
+
 Next, add a controller for the home page. Create a new file in the `./app/Http/Controllers` directory named `HomeController.php` and add the following code.
 
 ```php
@@ -161,19 +185,7 @@ class HomeController extends Controller
 {
   public function welcome()
   {
-    $viewData = [];
-
-    // Check for flash errors
-    if (session('error')) {
-      $viewData['error'] = session('error');
-      $viewData['errorDetail'] = session('errorDetail');
-    }
-
-    if (session('userName'))
-    {
-      $viewData['userName'] = session('userName');
-      $viewData['userEmail'] = session('userEmail');
-    }
+    $viewData = $this->loadViewData();
 
     return view('welcome', $viewData);
   }
