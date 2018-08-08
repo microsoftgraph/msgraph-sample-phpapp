@@ -21,6 +21,8 @@ class CalendarController extends Controller
 {
   public function calendar()
   {
+    $viewData = $this->loadViewData();
+
     // Get the access token from the cache
     $tokenCache = new TokenCache();
     $accessToken = $tokenCache->getAccessToken();

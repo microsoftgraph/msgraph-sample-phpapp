@@ -12,6 +12,8 @@ class CalendarController extends Controller
 {
   public function calendar()
   {
+    $viewData = $this->loadViewData();
+
     // Get the access token from the cache
     $tokenCache = new TokenCache();
     $accessToken = $tokenCache->getAccessToken();
@@ -31,22 +33,6 @@ class CalendarController extends Controller
     $events = $graph->createRequest('GET', $getEventsUrl)
       ->setReturnType(Model\Event::class)
       ->execute();
-
-    //return response()->json($events);
-
-    $viewData = [];
-
-    // Check for flash errors
-    if (session('error')) {
-      $viewData['error'] = session('error');
-      $viewData['errorDetail'] = session('errorDetail');
-    }
-
-    if (session('userName'))
-    {
-      $viewData['userName'] = session('userName');
-      $viewData['userEmail'] = session('userEmail');
-    }
 
     $viewData['events'] = $events;
     return view('calendar', $viewData);
