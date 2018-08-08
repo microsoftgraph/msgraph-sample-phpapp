@@ -23,16 +23,16 @@ class TokenCache {
 
   public function getAccessToken() {
     // Check if tokens exist
-    if (empty(session('access_token')) ||
-        empty(session('refresh_token')) ||
-        empty(session('token_expires'))) {
+    if (empty(session('accessToken')) ||
+        empty(session('refreshToken')) ||
+        empty(session('tokenExpires'))) {
       return '';
     }
 
     // Check if token is expired
     //Get current time + 5 minutes (to allow for time differences)
     $now = time() + 300;
-    if (session('token_expires') <= $now) {
+    if (session('tokenExpires') <= $now) {
       // Token is expired (or very close to it)
       // so let's refresh
 
@@ -49,7 +49,7 @@ class TokenCache {
 
       try {
         $newToken = $oauthClient->getAccessToken('refresh_token', [
-          'refresh_token' => session('refresh_token')
+          'refresh_token' => session('refreshToken')
         ]);
 
         // Store the new values
@@ -63,6 +63,6 @@ class TokenCache {
     }
 
     // Token is still valid, just return it
-    return session('access_token');
+    return session('accessToken');
   }
 }
