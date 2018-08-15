@@ -225,7 +225,7 @@ try {
 
 Before you test this new feature, add a way to sign out. Add the following action to the `AuthController` class.
 
-```ruby
+```PHP
 public function signout()
 {
   $tokenCache = new TokenCache();
@@ -319,4 +319,4 @@ This method first checks if the access token is expired or close to expiring. If
 
 ## Next steps
 
-Now that you've created the app registration, you can continue to the next module, [Extend the Ruby on Rails app for Microsoft Graph](../04-add-msgraph/README.md).
+Now that you've created the app registration, you can continue to the next module, [Extend the PHP app for Microsoft Graph](../04-add-msgraph/README.md).
