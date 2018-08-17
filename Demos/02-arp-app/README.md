@@ -40,4 +40,4 @@ In this demo, you will create a new Azure AD web application registration using 
 
 ## Next steps
 
-Now that you've created the app registration, you can continue to the next module, [Extend the Ruby on Rails app for Azure AD Authentication](../03-add-aad-auth/README.md).
+Now that you've created the app registration, you can continue to the next module, [Extend the PHP app for Azure AD Authentication](../03-add-aad-auth/README.md).
