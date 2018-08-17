@@ -7,7 +7,7 @@ Open the `.env` file in the root of your PHP application, and add the following 
 ```text
 OAUTH_APP_ID=YOUR_APP_ID_HERE
 OAUTH_APP_PASSWORD=YOUR_APP_PASSWORD_HERE
-OAUTH_REDIRECT_URI=http://localhost:8000/authorize
+OAUTH_REDIRECT_URI=http://localhost:8000/callback
 OAUTH_SCOPES='openid profile offline_access user.read calendars.read'
 OAUTH_AUTHORITY=https://login.microsoftonline.com/common
 OAUTH_AUTHORIZE_ENDPOINT=/oauth2/v2.0/authorize
@@ -123,7 +123,7 @@ Start the server and browse to `https://localhost:8000`. Click the sign-in butto
 
 Update the `callback` method in `/app/Http/Controllers/AuthController.php` to get the user's profile from Microsoft Graph.
 
-First, add the following `use` statements to the top of the file.
+First, add the following `use` statements to the top of the file, beneath the `namespace App\Http\Controllers;` line.
 
 ```php
 use Microsoft\Graph\Graph;
@@ -159,7 +159,7 @@ The new code creates a `Graph` object, assigns the access token, then uses it to
 
 Now that you can get tokens, it's time to implement a way to store them in the app. Since this is a sample app, for simplicity's sake, you'll store them in the session. A real-world app would use a more reliable secure storage solution, like a database.
 
-Create a new directory in the Open the `./app` directory named `TokenStore`, then create a new file in that directory named `TokenCache.php`, and add the following code.
+Create a new directory in the `./app` directory named `TokenStore`, then create a new file in that directory named `TokenCache.php`, and add the following code.
 
 ```php
 <?php
@@ -198,7 +198,15 @@ class TokenCache {
 }
 ```
 
-Then, update the `callback` function in the `AuthController` class to store the tokens in the session and redirect back to the main page. Replace the `try` block in the existing `callback` function with the following.
+Then, update the `callback` function in the `AuthController` class to store the tokens in the session and redirect back to the main page.
+
+First, add the following `use` statement to the top of `./app/Http/Controllers/AuthController.php`, beneath the `namespace App\Http\Controllers;` line.
+
+```php
+use App\TokenStore\TokenCache;
+```
+
+Then replace the `try` block in the existing `callback` function with the following.
 
 ```php
 try {

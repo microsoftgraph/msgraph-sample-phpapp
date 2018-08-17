@@ -52,7 +52,7 @@ composer require league/oauth2-client:dev-master microsoft/microsoft-graph
 
 ### Design the app
 
-Start by creating the global layout for the app. Create a new file in the  `./resources/views/layouts` directory named `layout.blade.php` and add the following code.
+Start by creating the global layout for the app. Create a new file in the  `./resources/views` directory named `layout.blade.php` and add the following code.
 
 ```php
 <!DOCTYPE html>
@@ -147,7 +147,7 @@ body {
 }
 ```
 
-Now update the default page. Open the `./resources/views/layouts/welcome.blade.php` file and replace its contents with the following.
+Now update the default page. Open the `./resources/views/welcome.blade.php` file and replace its contents with the following.
 
 ```php
 @extends('layout')
@@ -388,7 +388,7 @@ Start the server and browse to `https://localhost:8000`. Click the sign-in butto
 
 Update the `callback` method in `/app/Http/Controllers/AuthController.php` to get the user's profile from Microsoft Graph.
 
-First, add the following `use` statements to the top of the file.
+First, add the following `use` statements to the top of the file, beneath the `namespace App\Http\Controllers;` line.
 
 ```php
 use Microsoft\Graph\Graph;
@@ -424,7 +424,7 @@ The new code creates a `Graph` object, assigns the access token, then uses it to
 
 Now that you can get tokens, it's time to implement a way to store them in the app. Since this is a sample app, for simplicity's sake, you'll store them in the session. A real-world app would use a more reliable secure storage solution, like a database.
 
-Create a new directory in the Open the `./app` directory named `TokenStore`, then create a new file in that directory named `TokenCache.php`, and add the following code.
+Create a new directory in the `./app` directory named `TokenStore`, then create a new file in that directory named `TokenCache.php`, and add the following code.
 
 ```php
 <?php
@@ -463,7 +463,13 @@ class TokenCache {
 }
 ```
 
-Then, update the `callback` function in the `AuthController` class to store the tokens in the session and redirect back to the main page. Replace the `try` block in the existing `callback` function with the following.
+First, add the following `use` statement to the top of `./app/Http/Controllers/AuthController.php`, beneath the `namespace App\Http\Controllers;` line.
+
+```php
+use App\TokenStore\TokenCache;
+```
+
+Then replace the `try` block in the existing `callback` function with the following.
 
 ```php
 try {

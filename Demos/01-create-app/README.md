@@ -33,7 +33,7 @@ composer require league/oauth2-client:dev-master microsoft/microsoft-graph
 
 ## Design the app
 
-Start by creating the global layout for the app. Create a new file in the  `./resources/views/layouts` directory named `layout.blade.php` and add the following code.
+Start by creating the global layout for the app. Create a new file in the  `./resources/views` directory named `layout.blade.php` and add the following code.
 
 ```php
 <!DOCTYPE html>
@@ -128,7 +128,7 @@ body {
 }
 ```
 
-Now update the default page. Open the `./resources/views/layouts/welcome.blade.php` file and replace its contents with the following.
+Now update the default page. Open the `./resources/views/welcome.blade.php` file and replace its contents with the following.
 
 ```php
 @extends('layout')
