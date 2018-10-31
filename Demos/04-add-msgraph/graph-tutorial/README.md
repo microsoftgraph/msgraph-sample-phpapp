@@ -63,6 +63,11 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
     ```Shell
     composer install
     ```
+1. In your command-line interface (CLI), run the following command to generate an application key.
+
+    ```Shell
+    php artisan key:generate
+    ```
 
 ## Run the sample
 
