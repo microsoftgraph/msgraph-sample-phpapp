@@ -6,7 +6,8 @@ In this exercise, you will create a new Azure AD web application registration us
 
 1. Select **Add an app** at the top of the page.
 
-    > **Note:** If you see more than one **Add an app** button on the page, select the one that corresponds to the **Converged apps** list.
+    > [!NOTE]
+    > If you see more than one **Add an app** button on the page, select the one that corresponds to the **Converged apps** list.
 
 1. On the **Register your application** page, set the **Application Name** to **PHP Graph Tutorial** and select **Create**.
 
@@ -21,7 +22,8 @@ In this exercise, you will create a new Azure AD web application registration us
     1. Select **Generate New Password**.
     1. In the **New password generated** dialog, copy the contents of the box as you will need it later.
 
-        > **Important:** This password is never shown again, so make sure you copy it now.
+        > [!IMPORTANT]
+        > This password is never shown again, so make sure you copy it now.
 
     ![Screenshot of newly created application's password](./images/arp-create-app-03.png)
 
