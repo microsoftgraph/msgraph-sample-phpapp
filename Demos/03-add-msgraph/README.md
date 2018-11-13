@@ -1,112 +1,80 @@
-# Extend the PHP app for Microsoft Graph
+# How to run the completed project
 
-In this demo you will incorporate the Microsoft Graph into the application. For this application, you will use the [microsoft-graph](https://github.com/microsoftgraph/msgraph-sdk-php) library to make calls to Microsoft Graph.
+## Prerequisites
 
-## Get calendar events from Outlook
+To run the completed project in this folder, you need the following:
 
-Let's start by adding a controller for the calendar view. Create a new file in the `./app/Http/Controllers` folder named `CalendarController.php`, and add the following code.
+- [PHP](http://php.net/downloads.php) installed on your development machine. If you do not have PHP, visit the previous link for download options. (**Note:** This tutorial was written with PHP version 7.2. The steps in this guide may work with other versions, but that has not been tested.)
+- [Composer](https://getcomposer.org/) installed on your development machine.
+- [Laravel](https://laravel.com/) installed on your development machine.
+- Either a personal Microsoft account with a mailbox on Outlook.com, or a Microsoft work or school account.
 
-```php
-<?php
+If you don't have a Microsoft account, there are a couple of options to get a free account:
 
-namespace App\Http\Controllers;
+- You can [sign up for a new personal Microsoft account](https://signup.live.com/signup?wa=wsignin1.0&rpsnv=12&ct=1454618383&rver=6.4.6456.0&wp=MBI_SSL_SHARED&wreply=https://mail.live.com/default.aspx&id=64855&cbcxt=mai&bk=1454618383&uiflavor=web&uaid=b213a65b4fdc484382b6622b3ecaa547&mkt=E-US&lc=1033&lic=1).
+- You can [sign up for the Office 365 Developer Program](https://developer.microsoft.com/office/dev-program) to get a free Office 365 subscription.
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Microsoft\Graph\Graph;
-use Microsoft\Graph\Model;
-use App\TokenStore\TokenCache;
+## Register a web application with the Application Registration Portal
 
-class CalendarController extends Controller
-{
-  public function calendar()
-  {
-    $viewData = $this->loadViewData();
+1. Open a browser and navigate to the [Application Registration Portal](https://apps.dev.microsoft.com). Login using a **personal account** (aka: Microsoft Account) or **Work or School Account**.
 
-    // Get the access token from the cache
-    $tokenCache = new TokenCache();
-    $accessToken = $tokenCache->getAccessToken();
+1. Select **Add an app** at the top of the page.
 
-    // Create a Graph client
-    $graph = new Graph();
-    $graph->setAccessToken($accessToken);
+    > **Note:** If you see more than one **Add an app** button on the page, select the one that corresponds to the **Converged apps** list.
 
-    $queryParams = array(
-      '$select' => 'subject,organizer,start,end',
-      '$orderby' => 'createdDateTime DESC'
-    );
+1. On the **Register your application** page, set the **Application Name** to **PHP Graph Tutorial** and select **Create**.
 
-    // Append query parameters to the '/me/events' url
-    $getEventsUrl = '/me/events?'.http_build_query($queryParams);
+    ![Screenshot of creating a new app in the App Registration Portal website](/tutorial/images/arp-create-app-01.png)
 
-    $events = $graph->createRequest('GET', $getEventsUrl)
-      ->setReturnType(Model\Event::class)
-      ->execute();
+1. On the **PHP Graph Tutorial Registration** page, under the **Properties** section, copy the **Application Id** as you will need it later.
 
-    return response()->json($events);
-  }
-}
-```
+    ![Screenshot of newly created application's ID](/tutorial/images/arp-create-app-02.png)
 
-Consider what this code is doing.
+1. Scroll down to the **Application Secrets** section.
 
-- The URL that will be called is `/v1.0/me/events`.
-- The `$select` parameter limits the fields returned for each events to just those the view will actually use.
-- The `$orderby` parameter sorts the results by the date and time they were created, with the most recent item being first.
+    1. Select **Generate New Password**.
+    1. In the **New password generated** dialog, copy the contents of the box as you will need it later.
 
-Update the routes in `./routes/web.php` to add a route to this new controller
+        > **Important:** This password is never shown again, so make sure you copy it now.
 
-```php
-Route::get('/calendar', 'CalendarController@calendar');
-```
+    ![Screenshot of newly created application's password](/tutorial/images/arp-create-app-03.png)
 
-Now you can test this. Sign in and click the **Calendar** link in the nav bar. If everything works, you should see a JSON dump of events on the user's calendar.
+1. Scroll down to the **Platforms** section.
 
-## Display the results
+    1. Select **Add Platform**.
+    1. In the **Add Platform** dialog, select **Web**.
 
-Now you can add a view to display the results in a more user-friendly manner. Create a new file in the `./resources/views` directory named `calendar.blade.php` and add the following code.
+        ![Screenshot creating a platform for the app](/tutorial/images/arp-create-app-04.png)
 
-```php
-@extends('layout')
+    1. In the **Web** platform box, enter the URL `http://localhost:8000/callback` for the **Redirect URLs**.
 
-@section('content')
-<h1>Calendar</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Organizer</th>
-      <th scope="col">Subject</th>
-      <th scope="col">Start</th>
-      <th scope="col">End</th>
-    </tr>
-  </thead>
-  <tbody>
-    @isset($events)
-      @foreach($events as $event)
-        <tr>
-          <td>{{ $event->getOrganizer()->getEmailAddress()->getName() }}</td>
-          <td>{{ $event->getSubject() }}</td>
-          <td>{{ \Carbon\Carbon::parse($event->getStart()->getDateTime())->format('n/j/y g:i A') }}</td>
-          <td>{{ \Carbon\Carbon::parse($event->getEnd()->getDateTime())->format('n/j/y g:i A') }}</td>
-        </tr>
-      @endforeach
-    @endif
-  </tbody>
-</table>
-@endsection
-```
+        ![Screenshot of the newly added Web platform for the application](/tutorial/images/arp-create-app-05.png)
 
-That will loop through a collection of events and add a table row for each one. Remove the `return response()->json($events);` line from the `calendar` action in `./app/Http/Controllers/CalendarController.php`, and replace it with the following code.
+1. Scroll to the bottom of the page and select **Save**.
 
-```php
-$viewData['events'] = $events;
-return view('calendar', $viewData);
-```
+## Configure the sample
 
-Refresh the page and the app should now render a table of events.
+1. Rename the `.env.example` file to `.env`.
+1. Edit the `.env` file and make the following changes.
+    1. Replace `YOUR_APP_ID_HERE` with the **Application Id** you got from the App Registration Portal.
+    1. Replace `YOUR_APP_PASSWORD_HERE` with the password you got from the App Registration Portal.
+1. In your command-line interface (CLI), navigate to this directory and run the following command to install requirements.
 
-![A screenshot of the table of events](/Images/add-msgraph-01.png)
+    ```Shell
+    composer install
+    ```
+1. In your command-line interface (CLI), run the following command to generate an application key.
 
-## Next steps
+    ```Shell
+    php artisan key:generate
+    ```
 
-Now that you have a working app that calls Microsoft Graph, you can experiment and add new features. Visit the [Microsoft Graph documentation](https://developer.microsoft.com/graph/docs/concepts/overview) to see all of the data you can access with Microsoft Graph.
+## Run the sample
+
+1. Run the following command in your CLI to start the application.
+
+    ```Shell
+    php artisan serve
+    ```
+
+1. Open a browser and browse to `http://localhost:8000`.
