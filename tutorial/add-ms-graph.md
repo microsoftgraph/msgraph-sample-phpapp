@@ -1,6 +1,6 @@
-# Extend the PHP app for Microsoft Graph
+<!-- markdownlint-disable MD002 MD041 -->
 
-In this demo you will incorporate the Microsoft Graph into the application. For this application, you will use the [microsoft-graph](https://github.com/microsoftgraph/msgraph-sdk-php) library to make calls to Microsoft Graph.
+In this exercise you will incorporate the Microsoft Graph into the application. For this application, you will use the [microsoft-graph](https://github.com/microsoftgraph/msgraph-sdk-php) library to make calls to Microsoft Graph.
 
 ## Get calendar events from Outlook
 
@@ -105,8 +105,4 @@ return view('calendar', $viewData);
 
 Refresh the page and the app should now render a table of events.
 
-![A screenshot of the table of events](/Images/add-msgraph-01.png)
-
-## Next steps
-
-Now that you have a working app that calls Microsoft Graph, you can experiment and add new features. Visit the [Microsoft Graph documentation](https://developer.microsoft.com/graph/docs/concepts/overview) to see all of the data you can access with Microsoft Graph.
+![A screenshot of the table of events](./images/add-msgraph-01.png)
