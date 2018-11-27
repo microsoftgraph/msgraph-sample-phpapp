@@ -6,7 +6,6 @@ This module will introduce you to working with Microsoft Graph to access data in
 
 In this lab you will create a PHP web application using the Azure AD v2 authentication endpoint to access data in Office 365 using Microsoft Graph.
 
-- [Lab manual](./Lab.md)
 - [PHP Microsoft Graph tutorial](https://docs.microsoft.com/graph/training/php-tutorial)
 
 ## Demos
