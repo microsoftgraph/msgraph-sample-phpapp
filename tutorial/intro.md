@@ -5,7 +5,7 @@ This tutorial teaches you how to build a PHP web app that uses the Microsoft Gra
 > [!TIP]
 > If you prefer to just download the completed tutorial, you can download it in two ways.
 >
-> - Download the [ASP.NET quick start](https://developer.microsoft.com/graph/quick-start?platform=option-php) to get working code in minutes.
+> - Download the [PHP quick start](https://developer.microsoft.com/graph/quick-start?platform=option-php) to get working code in minutes.
 > - Download or clone the [GitHub repository](https://github.com/microsoftgraph/msgraph-training-phpapp).
 
 ## Prerequisites
