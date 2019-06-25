@@ -16,11 +16,11 @@ In this exercise, you will create a new Azure AD web application registration us
 
     ![A screenshot of the Register an application page](./images/aad-register-an-app.png)
 
-1. Choose **Register**. On the **PHP Graph Tutorial** page, copy the value of the **Application (client) ID** and save it, you will need it in the next step.
+1. Select **Register**. On the **PHP Graph Tutorial** page, copy the value of the **Application (client) ID** and save it, you will need it in the next step.
 
     ![A screenshot of the application ID of the new app registration](./images/aad-application-id.png)
 
-1. Select **Certificates & secrets** under **Manage**. Select the **New client secret** button. Enter a value in **Description** and select one of the options for **Expires** and choose **Add**.
+1. Select **Certificates & secrets** under **Manage**. Select the **New client secret** button. Enter a value in **Description** and select one of the options for **Expires** and select **Add**.
 
     ![A screenshot of the Add a client secret dialog](./images/aad-new-client-secret.png)
 
