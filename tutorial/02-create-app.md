@@ -12,7 +12,7 @@ Laravel creates a new directory called `graph-tutorial` and scaffolds a PHP app.
 php artisan serve
 ```
 
-Open your browser and navigate to `http://localhost:8000`. If everything is working, you will see a default Laravel page. If you don't see that page, check the [Laravel docs](https://laravel.com/docs/5.6).
+Open your browser and navigate to `http://localhost:8000`. If everything is working, you will see a default Laravel page. If you don't see that page, check the [Laravel docs](https://laravel.com/docs/6.0).
 
 Before moving on, install some additional libraries that you will use later:
 
@@ -116,7 +116,7 @@ Start by creating the global layout for the app. Create a new file in the  `./re
 
 This code adds [Bootstrap](http://getbootstrap.com/) for simple styling, and [Font Awesome](https://fontawesome.com/) for some simple icons. It also defines a global layout with a nav bar.
 
-Now open `./public/css/app.css` and replace its entire contents with the following.
+Create a new directory in the `./public` directory named `css`, then create a new file in the `./public/css` directory named `app.css`. Add the following code.
 
 ```css
 body {
