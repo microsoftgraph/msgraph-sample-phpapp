@@ -39,7 +39,13 @@ class AuthController extends Controller
     $request->session()->forget('oauthState');
     $providedState = $request->query('state');
 
-    if (!isset($expectedState) || !isset($providedState) || $expectedState != $providedState) {
+    if (!isset($expectedState)) {
+      // If there is no expected state in the session,
+      // do nothing and redirect to the home page.
+      return redirect('/');
+    }
+
+    if (!isset($providedState) || $expectedState != $providedState) {
       return redirect('/')
         ->with('error', 'Invalid auth state')
         ->with('errorDetail', 'The provided auth state did not match the expected value');
