@@ -209,7 +209,7 @@ Then, update the `callback` function in the `AuthController` class to store the 
 
 1. Replace the `try` block in the existing `callback` function with the following.
 
-    :::code language="php" source="../demo/graph-tutorial/app/Http/Controllers/AuthController.php" id="StoreTokenSnippet":::
+    :::code language="php" source="../demo/graph-tutorial/app/Http/Controllers/AuthController.php" id="StoreTokensSnippet":::
 
 ## Implement sign-out
 
