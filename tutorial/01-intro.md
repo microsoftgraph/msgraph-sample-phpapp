@@ -13,7 +13,7 @@ This tutorial teaches you how to build a PHP web app that uses the Microsoft Gra
 Before you start this tutorial, you should have [PHP](http://php.net/downloads.php), [Composer](https://getcomposer.org/), and [Laravel](https://laravel.com/) installed on your development machine.
 
 > [!NOTE]
-> This tutorial was written with PHP version 7.4.4, Composer version 1.10.1, and Laravel version 3.0.1. The steps in this guide may work with other versions, but that has not been tested.
+> This tutorial was written with PHP version 7.4.4, Composer version 1.10.1, and Laravel installer version 3.0.1. The steps in this guide may work with other versions, but that has not been tested.
 
 ## Feedback
 
