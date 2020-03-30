@@ -47,20 +47,22 @@ Before moving on, install some additional packages that you will use later:
 
 1. Update the base `Controller` class in **./app/Http/Controllers/Controller.php** by adding the following function to the class.
 
-    :::code language="php" source="../demo/graph-tutorial/app/Http/Controllers/Controller.php":::
+    :::code language="php" source="../demo/graph-tutorial/app/Http/Controllers/Controller.php" id="LoadViewDataSnippet":::
 
 1. Create a new file in the `./app/Http/Controllers` directory named `HomeController.php` and add the following code.
 
     :::code language="php" source="../demo/graph-tutorial/app/Http/Controllers/HomeController.php":::
 
-Finally, update the route in `./routes/web.php` to use the new controller. Replace the entire contents of this file with the following.
+1. Update the route in `./routes/web.php` to use the new controller. Replace the entire contents of this file with the following.
 
-```php
-<?php
+    ```php
+    <?php
 
-Route::get('/', 'HomeController@welcome');
-```
+    use Illuminate\Support\Facades\Route;
 
-Save all of your changes and restart the server. Now, the app should look very different.
+    Route::get('/', 'HomeController@welcome');
+    ```
 
-![A screenshot of the redesigned home page](./images/create-app-01.png)
+1. Save all of your changes and restart the server. Now, the app should look very different.
+
+    ![A screenshot of the redesigned home page](./images/create-app-01.png)

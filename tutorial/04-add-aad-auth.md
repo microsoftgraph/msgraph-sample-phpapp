@@ -111,7 +111,7 @@ In this exercise you will extend the application from the previous exercise to s
 
     The `callback` action is where Azure redirects after the signin is complete. That action makes sure the `state` value matches the saved value, then users the authorization code sent by Azure to request an access token. It then redirects back to the home page with the access token in the temporary error value. You'll use this to verify that sign-in is working before moving on.
 
-1. Before we test, add the routes to **./routes/web.php**.
+1. Add the routes to **./routes/web.php**.
 
     ```php
     Route::get('/signin', 'AuthController@signin');
@@ -133,26 +133,26 @@ In this section you'll update the `callback` method to get the user's profile fr
 
 1. Replace the `try` block in the `callback` method with the following code.
 
-```php
-try {
-  // Make the token request
-  $accessToken = $oauthClient->getAccessToken('authorization_code', [
-    'code' => $authCode
-  ]);
+    ```php
+    try {
+      // Make the token request
+      $accessToken = $oauthClient->getAccessToken('authorization_code', [
+        'code' => $authCode
+      ]);
 
-  $graph = new Graph();
-  $graph->setAccessToken($accessToken->getToken());
+      $graph = new Graph();
+      $graph->setAccessToken($accessToken->getToken());
 
-  $user = $graph->createRequest('GET', '/me')
-    ->setReturnType(Model\User::class)
-    ->execute();
+      $user = $graph->createRequest('GET', '/me')
+        ->setReturnType(Model\User::class)
+        ->execute();
 
-  // TEMPORARY FOR TESTING!
-  return redirect('/')
-    ->with('error', 'Access token received')
-    ->with('errorDetail', 'User:'.$user->getDisplayName().', Token:'.$accessToken->getToken());
-}
-```
+      // TEMPORARY FOR TESTING!
+      return redirect('/')
+        ->with('error', 'Access token received')
+        ->with('errorDetail', 'User:'.$user->getDisplayName().', Token:'.$accessToken->getToken());
+    }
+    ```
 
 The new code creates a `Graph` object, assigns the access token, then uses it to request the user's profile. It adds the user's display name to the temporary output for testing.
 
@@ -198,8 +198,6 @@ Now that you can get tokens, it's time to implement a way to store them in the a
       }
     }
     ```
-
-Then, update the `callback` function in the `AuthController` class to store the tokens in the session and redirect back to the main page.
 
 1. Add the following `use` statement to the top of **./app/Http/Controllers/AuthController.php**, beneath the `namespace App\Http\Controllers;` line.
 
