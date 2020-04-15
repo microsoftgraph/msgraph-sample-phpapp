@@ -4,105 +4,81 @@ In this exercise you will incorporate the Microsoft Graph into the application. 
 
 ## Get calendar events from Outlook
 
-Let's start by adding a controller for the calendar view. Create a new file in the `./app/Http/Controllers` folder named `CalendarController.php`, and add the following code.
+1. Create a new file in the **./app/Http/Controllers** directory named `CalendarController.php`, and add the following code.
 
-```php
-<?php
+    ```php
+    <?php
 
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Microsoft\Graph\Graph;
-use Microsoft\Graph\Model;
-use App\TokenStore\TokenCache;
+    use App\Http\Controllers\Controller;
+    use Illuminate\Http\Request;
+    use Microsoft\Graph\Graph;
+    use Microsoft\Graph\Model;
+    use App\TokenStore\TokenCache;
 
-class CalendarController extends Controller
-{
-  public function calendar()
-  {
-    $viewData = $this->loadViewData();
+    class CalendarController extends Controller
+    {
+      public function calendar()
+      {
+        $viewData = $this->loadViewData();
 
-    // Get the access token from the cache
-    $tokenCache = new TokenCache();
-    $accessToken = $tokenCache->getAccessToken();
+        // Get the access token from the cache
+        $tokenCache = new TokenCache();
+        $accessToken = $tokenCache->getAccessToken();
 
-    // Create a Graph client
-    $graph = new Graph();
-    $graph->setAccessToken($accessToken);
+        // Create a Graph client
+        $graph = new Graph();
+        $graph->setAccessToken($accessToken);
 
-    $queryParams = array(
-      '$select' => 'subject,organizer,start,end',
-      '$orderby' => 'createdDateTime DESC'
-    );
+        $queryParams = array(
+          '$select' => 'subject,organizer,start,end',
+          '$orderby' => 'createdDateTime DESC'
+        );
 
-    // Append query parameters to the '/me/events' url
-    $getEventsUrl = '/me/events?'.http_build_query($queryParams);
+        // Append query parameters to the '/me/events' url
+        $getEventsUrl = '/me/events?'.http_build_query($queryParams);
 
-    $events = $graph->createRequest('GET', $getEventsUrl)
-      ->setReturnType(Model\Event::class)
-      ->execute();
+        $events = $graph->createRequest('GET', $getEventsUrl)
+          ->setReturnType(Model\Event::class)
+          ->execute();
 
-    return response()->json($events);
-  }
-}
-```
+        return response()->json($events);
+      }
+    }
+    ```
 
-Consider what this code is doing.
+    Consider what this code is doing.
 
-- The URL that will be called is `/v1.0/me/events`.
-- The `$select` parameter limits the fields returned for each events to just those the view will actually use.
-- The `$orderby` parameter sorts the results by the date and time they were created, with the most recent item being first.
+    - The URL that will be called is `/v1.0/me/events`.
+    - The `$select` parameter limits the fields returned for each events to just those the view will actually use.
+    - The `$orderby` parameter sorts the results by the date and time they were created, with the most recent item being first.
 
-Update the routes in `./routes/web.php` to add a route to this new controller
+1. Update the routes in **./routes/web.php** to add a route to this new controller.
 
-```php
-Route::get('/calendar', 'CalendarController@calendar');
-```
+    ```php
+    Route::get('/calendar', 'CalendarController@calendar');
+    ```
 
-Now you can test this. Sign in and click the **Calendar** link in the nav bar. If everything works, you should see a JSON dump of events on the user's calendar.
+1. Sign in and click the **Calendar** link in the nav bar. If everything works, you should see a JSON dump of events on the user's calendar.
 
 ## Display the results
 
-Now you can add a view to display the results in a more user-friendly manner. Create a new file in the `./resources/views` directory named `calendar.blade.php` and add the following code.
+Now you can add a view to display the results in a more user-friendly manner.
 
-```php
-@extends('layout')
+1. Create a new file in the **./resources/views** directory named `calendar.blade.php` and add the following code.
 
-@section('content')
-<h1>Calendar</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Organizer</th>
-      <th scope="col">Subject</th>
-      <th scope="col">Start</th>
-      <th scope="col">End</th>
-    </tr>
-  </thead>
-  <tbody>
-    @isset($events)
-      @foreach($events as $event)
-        <tr>
-          <td>{{ $event->getOrganizer()->getEmailAddress()->getName() }}</td>
-          <td>{{ $event->getSubject() }}</td>
-          <td>{{ \Carbon\Carbon::parse($event->getStart()->getDateTime())->format('n/j/y g:i A') }}</td>
-          <td>{{ \Carbon\Carbon::parse($event->getEnd()->getDateTime())->format('n/j/y g:i A') }}</td>
-        </tr>
-      @endforeach
-    @endif
-  </tbody>
-</table>
-@endsection
-```
+    :::code language="php" source="../demo/graph-tutorial/resources/views/calendar.blade.php" id="CalendarSnippet":::
 
-That will loop through a collection of events and add a table row for each one. Remove the `return response()->json($events);` line from the `calendar` action in `./app/Http/Controllers/CalendarController.php`, and replace it with the following code.
+    That will loop through a collection of events and add a table row for each one.
 
-```php
-$viewData['events'] = $events;
-return view('calendar', $viewData);
-```
+1. Remove the `return response()->json($events);` line from the `calendar` action in **./app/Http/Controllers/CalendarController.php**, and replace it with the following code.
 
-Refresh the page and the app should now render a table of events.
+    ```php
+    $viewData['events'] = $events;
+    return view('calendar', $viewData);
+    ```
 
-![A screenshot of the table of events](./images/add-msgraph-01.png)
+1. Refresh the page and the app should now render a table of events.
+
+    ![A screenshot of the table of events](./images/add-msgraph-01.png)
