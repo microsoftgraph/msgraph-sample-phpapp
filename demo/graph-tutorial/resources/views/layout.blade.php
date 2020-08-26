@@ -31,6 +31,9 @@
               <li class="nav-item" data-turbolinks="false">
                 <a href="/calendar" class="nav-link{{$_SERVER['REQUEST_URI'] == '/calendar' ? ' active' : ''}}">Calendar</a>
               </li>
+              <li class="nav-item" data-turbolinks="false">
+                <a href="/messages" class="nav-link{{$_SERVER['REQUEST_URI'] == '/messages' ? ' active' : ''}}">Messages</a>
+              </li>
             @endif
           </ul>
           <ul class="navbar-nav justify-content-end">
