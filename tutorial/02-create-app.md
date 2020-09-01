@@ -23,6 +23,12 @@ Before moving on, install some additional packages that you will use later:
 - [oauth2-client](https://github.com/thephpleague/oauth2-client) for handling sign-in and OAuth token flows.
 - [microsoft-graph](https://github.com/microsoftgraph/msgraph-sdk-php) for making calls to Microsoft Graph.
 
+1. Run the following command to remove the existing version of `guzzlehttp/guzzle`. The version installed by Laravel conflicts with the version required by the Microsoft Graph PHP SDK.
+
+    ```Shell
+    composer remove guzzlehttp/guzzle
+    ```
+
 1. Run the following command in your CLI.
 
     ```Shell
