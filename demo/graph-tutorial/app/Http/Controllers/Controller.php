@@ -29,6 +29,7 @@ class Controller extends BaseController
         {
             $viewData['userName'] = session('userName');
             $viewData['userEmail'] = session('userEmail');
+            $viewData['userTimeZone'] = session('userTimeZone');
         }
 
         return $viewData;
