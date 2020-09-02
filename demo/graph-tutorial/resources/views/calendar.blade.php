@@ -6,6 +6,8 @@
 
 @section('content')
 <h1>Calendar</h1>
+<h2>{{ $dateRange }}</h2>
+<button class="btn btn-light btn-sm mb-3">New event</button>
 <table class="table">
   <thead>
     <tr>
