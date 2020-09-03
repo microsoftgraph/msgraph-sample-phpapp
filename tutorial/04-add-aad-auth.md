@@ -2,7 +2,7 @@
 
 In this exercise you will extend the application from the previous exercise to support authentication with Azure AD. This is required to obtain the necessary OAuth access token to call the Microsoft Graph. In this step you will integrate the [oauth2-client](https://github.com/thephpleague/oauth2-client) library into the application.
 
-1. Open the **.env**`** file in the root of your PHP application, and add the following code to the end of the file.
+1. Open the **.env** file in the root of your PHP application, and add the following code to the end of the file.
 
     :::code language="ini" source="../demo/graph-tutorial/.env.example" id="OAuthSettingsSnippet":::
 
