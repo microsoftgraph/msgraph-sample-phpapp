@@ -2,7 +2,7 @@
 
 In this exercise you will extend the application from the previous exercise to support authentication with Azure AD. This is required to obtain the necessary OAuth access token to call the Microsoft Graph. In this step you will integrate the [oauth2-client](https://github.com/thephpleague/oauth2-client) library into the application.
 
-1. Open the `.env` file in the root of your PHP application, and add the following code to the end of the file.
+1. Open the **.env** file in the root of your PHP application, and add the following code to the end of the file.
 
     :::code language="ini" source="../demo/graph-tutorial/.env.example" id="OAuthSettingsSnippet":::
 
@@ -118,7 +118,16 @@ In this exercise you will extend the application from the previous exercise to s
     Route::get('/callback', 'AuthController@callback');
     ```
 
-1. Start the server and browse to `https://localhost:8000`. Click the sign-in button and you should be redirected to `https://login.microsoftonline.com`. Login with your Microsoft account and consent to the requested permissions. The browser redirects to the app, showing the token.
+1. Start the server and browse to `https://localhost:8000`. Click the sign-in button and you should be redirected to `https://login.microsoftonline.com`. Login with your Microsoft account.
+
+1. Examine the consent prompt. The list of permissions correspond to list of permissions scopes configured in **.env**.
+
+    - **Maintain access to data you have given it access to:** (`offline_access`) This permission is requested by MSAL in order to retrieve refresh tokens.
+    - **Sign you in and read your profile:** (`User.Read`) This permission allows the app to get the logged-in user's profile and profile photo.
+    - **Read your mailbox settings:** (`MailboxSettings.Read`) This permission allows the app to read the user's mailbox settings, including time zone and time format.
+    - **Have full access to your calendars:** (`Calendars.ReadWrite`) This permission allows the app to read events on the user's calendar, add new events, and modify existing ones.
+
+1. Consent to the requested permissions. The browser redirects to the app, showing the token.
 
 ### Get user details
 
@@ -143,7 +152,7 @@ In this section you'll update the `callback` method to get the user's profile fr
       $graph = new Graph();
       $graph->setAccessToken($accessToken->getToken());
 
-      $user = $graph->createRequest('GET', '/me')
+      $user = $graph->createRequest('GET', '/me?$select=displayName,mail,mailboxSettings,userPrincipalName')
         ->setReturnType(Model\User::class)
         ->execute();
 
@@ -175,6 +184,7 @@ Now that you can get tokens, it's time to implement a way to store them in the a
           'tokenExpires' => $accessToken->getExpires(),
           'userName' => $user->getDisplayName(),
           'userEmail' => null !== $user->getMail() ? $user->getMail() : $user->getUserPrincipalName()
+          'userTimeZone' => $user->getMailboxSettings()->getTimeZone()
         ]);
       }
 
@@ -184,6 +194,7 @@ Now that you can get tokens, it's time to implement a way to store them in the a
         session()->forget('tokenExpires');
         session()->forget('userName');
         session()->forget('userEmail');
+        session()->forget('userTimeZone');
       }
 
       public function getAccessToken() {

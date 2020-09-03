@@ -6,6 +6,8 @@
 
 @section('content')
 <h1>Calendar</h1>
+<h2>{{ $dateRange }}</h2>
+<a class="btn btn-light btn-sm mb-3" href={{action('CalendarController@getNewEventForm')}}>New event</a>
 <table class="table">
   <thead>
     <tr>

@@ -4,6 +4,12 @@ In this exercise you will incorporate the Microsoft Graph into the application. 
 
 ## Get calendar events from Outlook
 
+1. Create a new directory in the **./app** directory named `TimeZones`, then create a new file in that directory named `TimeZones.php`, and add the following code.
+
+    :::code language="php" source="../demo/graph-tutorial/app/TimeZones/TimeZones.php":::
+
+    This class implements a simplistic mapping of Windows time zone names to IANA time zone identifiers.
+
 1. Create a new file in the **./app/Http/Controllers** directory named `CalendarController.php`, and add the following code.
 
     ```php
@@ -16,6 +22,7 @@ In this exercise you will incorporate the Microsoft Graph into the application. 
     use Microsoft\Graph\Graph;
     use Microsoft\Graph\Model;
     use App\TokenStore\TokenCache;
+    use App\TimeZones\TimeZones;
 
     class CalendarController extends Controller
     {
@@ -23,6 +30,42 @@ In this exercise you will incorporate the Microsoft Graph into the application. 
       {
         $viewData = $this->loadViewData();
 
+        $graph = $this->getGraph();
+
+        // Get user's timezone
+        $timezone = TimeZones::getTzFromWindows($viewData['userTimeZone']);
+
+        // Get start and end of week
+        $startOfWeek = new \DateTimeImmutable('sunday -1 week', $timezone);
+        $endOfWeek = new \DateTimeImmutable('sunday', $timezone);
+
+        $queryParams = array(
+          'startDateTime' => $startOfWeek->format(\DateTimeInterface::ISO8601),
+          'endDateTime' => $endOfWeek->format(\DateTimeInterface::ISO8601),
+          // Only request the properties used by the app
+          '$select' => 'subject,organizer,start,end',
+          // Sort them by start time
+          '$orderby' => 'start/dateTime',
+          // Limit results to 25
+          '$top' => 25
+        );
+
+        // Append query parameters to the '/me/calendarView' url
+        $getEventsUrl = '/me/calendarView?'.http_build_query($queryParams);
+
+        $events = $graph->createRequest('GET', $getEventsUrl)
+          // Add the user's timezone to the Prefer header
+          ->addHeaders(array(
+            'Prefer' => 'outlook.timezone="'.$viewData['userTimeZone'].'"'
+          ))
+          ->setReturnType(Model\Event::class)
+          ->execute();
+
+        return response()->json($events);
+      }
+
+      private function getGraph(): Graph
+      {
         // Get the access token from the cache
         $tokenCache = new TokenCache();
         $accessToken = $tokenCache->getAccessToken();
@@ -30,29 +73,19 @@ In this exercise you will incorporate the Microsoft Graph into the application. 
         // Create a Graph client
         $graph = new Graph();
         $graph->setAccessToken($accessToken);
-
-        $queryParams = array(
-          '$select' => 'subject,organizer,start,end',
-          '$orderby' => 'createdDateTime DESC'
-        );
-
-        // Append query parameters to the '/me/events' url
-        $getEventsUrl = '/me/events?'.http_build_query($queryParams);
-
-        $events = $graph->createRequest('GET', $getEventsUrl)
-          ->setReturnType(Model\Event::class)
-          ->execute();
-
-        return response()->json($events);
+        return $graph;
       }
     }
     ```
 
     Consider what this code is doing.
 
-    - The URL that will be called is `/v1.0/me/events`.
+    - The URL that will be called is `/v1.0/me/calendarView`.
+    - The `startDateTime` and `endDateTime` parameters define the start and end of the view.
     - The `$select` parameter limits the fields returned for each events to just those the view will actually use.
     - The `$orderby` parameter sorts the results by the date and time they were created, with the most recent item being first.
+    - The `$top` parameter limits the results to 25 events.
+    - The `Prefer: outlook.timezone=""` header causes the start and end times in the response to be adjusted to the user's preferred time zone.
 
 1. Update the routes in **./routes/web.php** to add a route to this new controller.
 
