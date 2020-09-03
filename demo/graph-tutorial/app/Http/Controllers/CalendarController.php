@@ -63,6 +63,9 @@ class CalendarController extends Controller
   }
   // </getNewEventFormSnippet>
 
+  /**
+   * @SuppressWarnings(PHPMD.UnusedLocalVariables)
+   */
   // <createNewEventSnippet>
   public function createNewEvent(Request $request)
   {
