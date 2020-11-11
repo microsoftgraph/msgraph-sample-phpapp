@@ -4,7 +4,7 @@ In this exercise you will extend the application from the previous exercise to s
 
 1. Open the **.env** file in the root of your PHP application, and add the following code to the end of the file.
 
-    :::code language="ini" source="../demo/graph-tutorial/example.env" id="OAuthSettingsSnippet":::
+    :::code language="ini" source="../demo/graph-tutorial/example.env" range="48-54":::
 
 1. Replace `YOUR_APP_ID_HERE` with the application ID from the Application Registration Portal, and replace `YOUR_APP_PASSWORD_HERE` with the password you generated.
 
