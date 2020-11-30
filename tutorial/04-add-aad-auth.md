@@ -183,7 +183,7 @@ Now that you can get tokens, it's time to implement a way to store them in the a
           'refreshToken' => $accessToken->getRefreshToken(),
           'tokenExpires' => $accessToken->getExpires(),
           'userName' => $user->getDisplayName(),
-          'userEmail' => null !== $user->getMail() ? $user->getMail() : $user->getUserPrincipalName()
+          'userEmail' => null !== $user->getMail() ? $user->getMail() : $user->getUserPrincipalName(),
           'userTimeZone' => $user->getMailboxSettings()->getTimeZone()
         ]);
       }
