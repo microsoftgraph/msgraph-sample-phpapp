@@ -105,6 +105,13 @@ Now you can add a view to display the results in a more user-friendly manner.
 
     That will loop through a collection of events and add a table row for each one.
 
+1. Update the routes in **./routes/web.php** to add routes for `/calendar/new`. You will implement these functions in the next section, but the route need to be defined now because **calendar.blade.php** references it.
+
+    ```php
+    Route::get('/calendar/new', 'CalendarController@getNewEventForm');
+    Route::post('/calendar/new', 'CalendarController@createNewEvent');
+    ```
+
 1. Remove the `return response()->json($events);` line from the `calendar` action in **./app/Http/Controllers/CalendarController.php**, and replace it with the following code.
 
     ```php
