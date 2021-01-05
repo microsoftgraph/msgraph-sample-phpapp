@@ -24,13 +24,6 @@ In this section you will add the ability to create events on the user's calendar
     - It builds an [event](https://docs.microsoft.com/graph/api/resources/event?view=graph-rest-1.0) from the form input.
     - It sends a POST to the `/me/events` endpoint, then redirects back to the calendar view.
 
-1. Update the routes in **./routes/web.php** to add routes for these new functions on the controller.
-
-    ```php
-    Route::get('/calendar/new', 'CalendarController@getNewEventForm');
-    Route::post('/calendar/new', 'CalendarController@createNewEvent');
-    ```
-
 1. Save all of your changes and restart the server. Use the **New event** button to navigate to the new event form.
 
 1. Fill in the values on the form. Use a start date from the current week. Select **Create**.
