@@ -12,9 +12,7 @@ use App\TokenStore\TokenCache;
 use App\TimeZones\TimeZones;
 
 class CalendarController extends Controller
-{ /**
-   * @SuppressWarnings(PHPMD.StaticAccess)
-   */
+{
   public function calendar()
   {
     $viewData = $this->loadViewData();
@@ -63,9 +61,6 @@ class CalendarController extends Controller
   }
   // </getNewEventFormSnippet>
 
-  /**
-   * @SuppressWarnings(PHPMD.UnusedLocalVariables)
-   */
   // <createNewEventSnippet>
   public function createNewEvent(Request $request)
   {

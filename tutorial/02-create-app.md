@@ -14,7 +14,7 @@ Begin by creating a new Laravel project.
     php artisan serve
     ```
 
-1. Open your browser and navigate to `http://localhost:8000`. If everything is working, you will see a default Laravel page. If you don't see that page, check the [Laravel docs](https://laravel.com/docs/7.x).
+1. Open your browser and navigate to `http://localhost:8000`. If everything is working, you will see a default Laravel page. If you don't see that page, check the [Laravel docs](https://laravel.com/docs/8.x).
 
 ## Install packages
 
@@ -22,12 +22,6 @@ Before moving on, install some additional packages that you will use later:
 
 - [oauth2-client](https://github.com/thephpleague/oauth2-client) for handling sign-in and OAuth token flows.
 - [microsoft-graph](https://github.com/microsoftgraph/msgraph-sdk-php) for making calls to Microsoft Graph.
-
-1. Run the following command to remove the existing version of `guzzlehttp/guzzle`. The version installed by Laravel conflicts with the version required by the Microsoft Graph PHP SDK.
-
-    ```Shell
-    composer remove guzzlehttp/guzzle
-    ```
 
 1. Run the following command in your CLI.
 
@@ -69,11 +63,9 @@ Before moving on, install some additional packages that you will use later:
     Route::get('/', 'HomeController@welcome');
     ```
 
-1. For Laravel 8, edit './app/Providers/RouteServiceProvider.php' and make sure the namespace variable is present:
+1. Open **./app/Providers/RouteServiceProvider.php** and uncomment the `$namespace` declaration.
 
-```php
-class RouteServiceProvider extends ServiceProvider
-{
+    ```php
     /**
      * This namespace is applied to your controller routes.
      *
@@ -82,8 +74,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
-}
-```
+    ```
 
 1. Save all of your changes and restart the server. Now, the app should look very different.
 

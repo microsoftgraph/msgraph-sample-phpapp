@@ -16,13 +16,13 @@ class AuthController extends Controller
   {
     // Initialize the OAuth client
     $oauthClient = new \League\OAuth2\Client\Provider\GenericProvider([
-      'clientId'                => env('OAUTH_APP_ID'),
-      'clientSecret'            => env('OAUTH_APP_PASSWORD'),
-      'redirectUri'             => env('OAUTH_REDIRECT_URI'),
-      'urlAuthorize'            => env('OAUTH_AUTHORITY').env('OAUTH_AUTHORIZE_ENDPOINT'),
-      'urlAccessToken'          => env('OAUTH_AUTHORITY').env('OAUTH_TOKEN_ENDPOINT'),
+      'clientId'                => config('azure.appId'),
+      'clientSecret'            => config('azure.appSecret'),
+      'redirectUri'             => config('azure.redirectUri'),
+      'urlAuthorize'            => config('azure.authority').config('azure.authorizeEndpoint'),
+      'urlAccessToken'          => config('azure.authority').config('azure.tokenEndpoint'),
       'urlResourceOwnerDetails' => '',
-      'scopes'                  => env('OAUTH_SCOPES')
+      'scopes'                  => config('azure.scopes')
     ]);
 
     $authUrl = $oauthClient->getAuthorizationUrl();
@@ -58,13 +58,13 @@ class AuthController extends Controller
     if (isset($authCode)) {
       // Initialize the OAuth client
       $oauthClient = new \League\OAuth2\Client\Provider\GenericProvider([
-        'clientId'                => env('OAUTH_APP_ID'),
-        'clientSecret'            => env('OAUTH_APP_PASSWORD'),
-        'redirectUri'             => env('OAUTH_REDIRECT_URI'),
-        'urlAuthorize'            => env('OAUTH_AUTHORITY').env('OAUTH_AUTHORIZE_ENDPOINT'),
-        'urlAccessToken'          => env('OAUTH_AUTHORITY').env('OAUTH_TOKEN_ENDPOINT'),
+        'clientId'                => config('azure.appId'),
+        'clientSecret'            => config('azure.appSecret'),
+        'redirectUri'             => config('azure.redirectUri'),
+        'urlAuthorize'            => config('azure.authority').config('azure.authorizeEndpoint'),
+        'urlAccessToken'          => config('azure.authority').config('azure.tokenEndpoint'),
         'urlResourceOwnerDetails' => '',
-        'scopes'                  => env('OAUTH_SCOPES')
+        'scopes'                  => config('azure.scopes')
       ]);
 
       // <StoreTokensSnippet>
