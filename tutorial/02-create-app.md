@@ -63,11 +63,9 @@ Before moving on, install some additional packages that you will use later:
     Route::get('/', 'HomeController@welcome');
     ```
 
-1. For Laravel 8, edit './app/Providers/RouteServiceProvider.php' and make sure the namespace variable is present:
+1. Open **./app/Providers/RouteServiceProvider.php** and uncomment the `$namespace` declaration.
 
-```php
-class RouteServiceProvider extends ServiceProvider
-{
+    ```php
     /**
      * This namespace is applied to your controller routes.
      *
@@ -76,8 +74,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
-}
-```
+    ```
 
 1. Save all of your changes and restart the server. Now, the app should look very different.
 
