@@ -18,7 +18,7 @@ You should also have either a personal Microsoft account with a mailbox on Outlo
 - You can [sign up for the Office 365 Developer Program](https://developer.microsoft.com/office/dev-program) to get a free Office 365 subscription.
 
 > [!NOTE]
-> This tutorial was written with PHP version 7.4.4, Composer version 1.10.10, and Laravel installer version 3.2.0. The steps in this guide may work with other versions, but that has not been tested.
+> This tutorial was written with PHP version 8.0.1, Composer version 2.0.8, and Laravel installer version 4.1.1. The steps in this guide may work with other versions, but that has not been tested.
 
 ## Feedback
 
