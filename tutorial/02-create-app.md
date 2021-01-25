@@ -63,6 +63,22 @@ Before moving on, install some additional packages that you will use later:
     Route::get('/', 'HomeController@welcome');
     ```
 
+1. For Laravel 8, edit './app/Providers/RouteServiceProvider.php' and make sure the namespace variable is present:
+
+```php
+class RouteServiceProvider extends ServiceProvider
+{
+    /**
+     * This namespace is applied to your controller routes.
+     *
+     * In addition, it is set as the URL generator's root namespace.
+     *
+     * @var string
+     */
+    protected $namespace = 'App\Http\Controllers';
+}
+```
+
 1. Save all of your changes and restart the server. Now, the app should look very different.
 
     ![A screenshot of the redesigned home page](./images/create-app-01.png)
