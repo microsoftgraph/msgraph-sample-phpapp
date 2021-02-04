@@ -95,10 +95,10 @@ In this exercise you will extend the application from the previous exercise to s
               ->with('error', 'Access token received')
               ->with('errorDetail', $accessToken->getToken());
           }
-          catch (League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
+          catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
             return redirect('/')
               ->with('error', 'Error requesting access token')
-              ->with('errorDetail', $e->getMessage());
+              ->with('errorDetail', json_encode($e->getResponseBody()));
           }
         }
 
