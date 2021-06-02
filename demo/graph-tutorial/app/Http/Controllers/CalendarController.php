@@ -57,7 +57,9 @@ class CalendarController extends Controller
   // <getNewEventFormSnippet>
   public function getNewEventForm()
   {
-    return view('newevent');
+    $viewData = $this->loadViewData();
+    
+    return view('newevent', $viewData);
   }
   // </getNewEventFormSnippet>
 
