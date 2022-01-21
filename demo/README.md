@@ -4,7 +4,7 @@
 
 To run the completed project in this folder, you need the following:
 
-- [PHP](http://php.net/downloads.php) installed on your development machine. If you do not have PHP, visit the previous link for download options. (**Note:** This tutorial was written with PHP version 7.4.4. The steps in this guide may work with other versions, but that has not been tested.)
+- [PHP](http://php.net/downloads.php) installed on your development machine. If you do not have PHP, visit the previous link for download options. (**Note:** This project requires PHP version 8.0.)
 - [Composer](https://getcomposer.org/) installed on your development machine.
 - [Laravel](https://laravel.com/) installed on your development machine.
 - Either a personal Microsoft account with a mailbox on Outlook.com, or a Microsoft work or school account.
