@@ -15,7 +15,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "league/oauth2-client": "^2.6",
-        "microsoft/microsoft-graph": "dev-zengin/php-version"
+        "microsoft/microsoft-graph": "^1.52"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
