@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f9e49ac00e2d81229d3c282f5d8eb29",
+    "content-hash": "af91b5bf31f37318fb4980a72624d5de",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1451,33 +1451,34 @@
         },
         {
             "name": "microsoft/microsoft-graph",
-            "version": "dev-zengin/php-version",
+            "version": "1.52.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/microsoftgraph/msgraph-sdk-php.git",
-                "reference": "51d2b2f64f142de083b04ac0aff56f8132a07ccd"
+                "reference": "2aac1c23337cc55e1931df54c234abf3189a5cf7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/51d2b2f64f142de083b04ac0aff56f8132a07ccd",
-                "reference": "51d2b2f64f142de083b04ac0aff56f8132a07ccd",
+                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/2aac1c23337cc55e1931df54c234abf3189a5cf7",
+                "reference": "2aac1c23337cc55e1931df54c234abf3189a5cf7",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "^6.0 || ^7.0",
-                "php": "^8.0"
+                "php": "^8.0 || ^7.3",
+                "psr/http-message": "^1.0"
             },
             "require-dev": {
                 "mikey179/vfsstream": "^1.2",
-                "phpdocumentor/phpdocumentor": "^2.9",
-                "phpunit/phpunit": "^7.5 || ^8.0"
+                "phpstan/phpstan": "^0.12.90 || ^1.0.0",
+                "phpunit/phpunit": "^8.0 || ^9.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Beta\\Microsoft\\Graph\\": "src/Beta/Microsoft/Graph/",
-                    "Microsoft\\Graph\\": "src/"
+                    "Microsoft\\Graph\\": "src/",
+                    "Beta\\Microsoft\\Graph\\": "src/Beta/Microsoft/Graph/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1495,9 +1496,9 @@
             "homepage": "https://developer.microsoft.com/en-us/graph",
             "support": {
                 "issues": "https://github.com/microsoftgraph/msgraph-sdk-php/issues",
-                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/zengin/php-version"
+                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/1.52.0"
             },
-            "time": "2020-12-21T21:27:47+00:00"
+            "time": "2022-02-02T12:11:22+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -7521,9 +7522,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "microsoft/microsoft-graph": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
