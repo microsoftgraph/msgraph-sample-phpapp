@@ -58,7 +58,7 @@ class CalendarController extends Controller
   public function getNewEventForm()
   {
     $viewData = $this->loadViewData();
-    
+
     return view('newevent', $viewData);
   }
   // </getNewEventFormSnippet>
