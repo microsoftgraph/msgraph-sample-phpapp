@@ -63,7 +63,7 @@ Before moving on, install some additional packages that you will use later:
     Route::get('/', 'HomeController@welcome');
     ```
 
-1. Open **./app/Providers/RouteServiceProvider.php** and uncomment the `$namespace` declaration.
+1. Open **./app/Providers/RouteServiceProvider.php** and add the `$namespace` declaration.
 
     ```php
     /**
@@ -74,6 +74,31 @@ Before moving on, install some additional packages that you will use later:
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
+    ```
+
+1. Update the `boot` function in `./app/Providers/RouteServiceProvider.php` to use this namespace. Replace the `boot` function with the following.
+
+    ```php
+     /**
+     * Define your route model bindings, pattern filters, etc.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->configureRateLimiting();
+
+        $this->routes(function () {
+            Route::middleware('api')
+                ->prefix('api')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/api.php'));
+
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web.php'));
+        });
+    }
     ```
 
 1. Save all of your changes and restart the server. Now, the app should look very different.
