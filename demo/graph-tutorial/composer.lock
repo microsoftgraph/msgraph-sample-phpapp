@@ -1555,16 +1555,16 @@
         },
         {
             "name": "microsoft/microsoft-graph",
-            "version": "1.68.0",
+            "version": "1.69.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/microsoftgraph/msgraph-sdk-php.git",
-                "reference": "26fe296fe3d2a3b3df3820de0e433a87ea41c265"
+                "reference": "dc867afdb2c89ea7ead37d6bcfcaf0389e7a85f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/26fe296fe3d2a3b3df3820de0e433a87ea41c265",
-                "reference": "26fe296fe3d2a3b3df3820de0e433a87ea41c265",
+                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/dc867afdb2c89ea7ead37d6bcfcaf0389e7a85f4",
+                "reference": "dc867afdb2c89ea7ead37d6bcfcaf0389e7a85f4",
                 "shasum": ""
             },
             "require": {
@@ -1600,9 +1600,9 @@
             "homepage": "https://developer.microsoft.com/en-us/graph",
             "support": {
                 "issues": "https://github.com/microsoftgraph/msgraph-sdk-php/issues",
-                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/1.68.0"
+                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/1.69.0"
             },
-            "time": "2022-06-08T07:20:44+00:00"
+            "time": "2022-06-15T11:11:33+00:00"
         },
         {
             "name": "monolog/monolog",
