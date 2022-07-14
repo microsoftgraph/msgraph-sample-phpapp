@@ -8,4 +8,4 @@ updates:
   - package-ecosystem: "composer" # See documentation for possible values
     directory: "/demo/graph-tutorial/" # Location of package manifests
     schedule:
-      interval: "daily"
+      interval: "weekly"
