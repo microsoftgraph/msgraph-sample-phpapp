@@ -11,7 +11,7 @@ languages:
 # Microsoft Graph Training Module - Build PHP apps with Microsoft Graph
 ![License.](https://img.shields.io/badge/license-MIT-green.svg)
 
-This module will introduce you to working with Microsoft Graph to access data in Office 365 by building PHP web applications.
+This module will introduce you to working with Microsoft Graph to access data in Office 365 by building a PHP web application.  This sample uses the Azure AD v2 authentication endpoint to access data in Office 365 using Microsoft Graph.
 
 ## Prerequisites
 
@@ -53,12 +53,6 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
 
     > **IMPORTANT**
     > This client secret is never shown again, so make sure you copy it now.
-
-## Lab - Build PHP apps with Microsoft Graph
-
-In this lab you will create a PHP web application using the Azure AD v2 authentication endpoint to access data in Office 365 using Microsoft Graph.
-
-- [PHP Microsoft Graph tutorial](https://docs.microsoft.com/graph/training/php-tutorial)
 
 ## Configure the sample
 
