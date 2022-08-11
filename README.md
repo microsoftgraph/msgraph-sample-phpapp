@@ -9,6 +9,7 @@ languages:
 - php
 ---
 # Microsoft Graph Training Module - Build PHP apps with Microsoft Graph
+![License.](https://img.shields.io/badge/license-MIT-green.svg)
 
 This module will introduce you to working with Microsoft Graph to access data in Office 365 by building PHP web applications.
 
