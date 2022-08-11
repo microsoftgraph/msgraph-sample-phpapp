@@ -1,3 +1,13 @@
+---
+page_type: sample
+description: This sample demonstrates how to use Microsoft Graph with a PHP web application and the Azure AD v2 authentication endpoint to access data in Office 365.
+products:
+- ms-graph
+- microsoft-graph-calendar-api
+- office-exchange-online
+languages:
+- php
+---
 # Microsoft Graph Training Module - Build PHP apps with Microsoft Graph
 
 This module will introduce you to working with Microsoft Graph to access data in Office 365 by building PHP web applications.
