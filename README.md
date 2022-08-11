@@ -16,13 +16,16 @@ This module will introduce you to working with Microsoft Graph to access data in
 ## Prerequisites
 
 To run the completed project in this folder, you need the following:
-- Before you start this tutorial, you should have [PHP](https://www.php.net/) and [Composer](https://getcomposer.org/) installed on your development machine.
+- Before you start this tutorial, you should have [PHP](http://php.net/downloads.php), [Composer](https://getcomposer.org/), and [Laravel](https://laravel.com/) installed on your development machine.
 - Either a personal Microsoft account with a mailbox on Outlook.com, or a Microsoft work or school account.
 
 If you don't have a Microsoft account, there are a couple of options to get a free account:
 
 - You can [sign up for a new personal Microsoft account](https://signup.live.com/signup?wa=wsignin1.0&rpsnv=12&ct=1454618383&rver=6.4.6456.0&wp=MBI_SSL_SHARED&wreply=https://mail.live.com/default.aspx&id=64855&cbcxt=mai&bk=1454618383&uiflavor=web&uaid=b213a65b4fdc484382b6622b3ecaa547&mkt=E-US&lc=1033&lic=1).
 - You can [sign up for the Microsoft 365 Developer Program](https://developer.microsoft.com/microsoft-365/dev-program) to get a free Office 365 subscription.
+
+> [!NOTE]
+> This tutorial was written with PHP version 8.0.1, Composer version 2.0.8, and Laravel installer version 4.1.1. The steps in this guide may work with other versions, but that has not been tested.
 
 ## Register a web application with the Azure Active Directory admin center
 
@@ -56,6 +59,34 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
 In this lab you will create a PHP web application using the Azure AD v2 authentication endpoint to access data in Office 365 using Microsoft Graph.
 
 - [PHP Microsoft Graph tutorial](https://docs.microsoft.com/graph/training/php-tutorial)
+
+## Configure the sample
+
+1. Rename the `example.env` file to `.env`.
+1. Edit the `.env` file and make the following changes.
+    1. Replace `YOUR_APP_ID_HERE` with the **Application Id** you got from the App Registration Portal.
+    1. Replace `YOUR_APP_PASSWORD_HERE` with the password you got from the App Registration Portal.
+1. In your command-line interface (CLI), navigate to this directory and run the following command to install requirements.
+
+    ```Shell
+    composer install
+    ```
+
+1. In your command-line interface (CLI), run the following command to generate an application key.
+
+    ```Shell
+    php artisan key:generate
+    ```
+
+## Run the sample
+
+1. Run the following command in your CLI to start the application.
+
+    ```Shell
+    php artisan serve
+    ```
+
+1. Open a browser and browse to `http://localhost:8000`.
 
 ## Completed sample
 
