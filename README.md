@@ -16,7 +16,7 @@ This module will introduce you to working with Microsoft Graph to access data in
 ## Prerequisites
 
 To run the completed project in this folder, you need the following:
-
+- Before you start this tutorial, you should have [PHP](https://www.php.net/) and [Composer](https://getcomposer.org/) installed on your development machine.
 - Either a personal Microsoft account with a mailbox on Outlook.com, or a Microsoft work or school account.
 
 If you don't have a Microsoft account, there are a couple of options to get a free account:
