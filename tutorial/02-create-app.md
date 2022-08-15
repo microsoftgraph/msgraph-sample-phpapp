@@ -5,7 +5,7 @@ Begin by creating a new Laravel project.
 1. Open your command-line interface (CLI), navigate to a directory where you have rights to create files, and run the following command to create a new PHP app.
 
     ```Shell
-    laravel new graph-tutorial
+    composer create-project laravel/laravel graphtutorial
     ```
 
 1. Navigate to the **graph-tutorial** directory and enter the following command to start a local web server.
