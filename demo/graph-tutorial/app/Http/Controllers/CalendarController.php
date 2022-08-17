@@ -1,6 +1,4 @@
 <?php
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 
 namespace App\Http\Controllers;
 
@@ -50,8 +48,8 @@ class CalendarController extends Controller
       ->setReturnType(Model\Event::class)
       ->execute();
 
-    $viewData['events'] = $events;
-    return view('calendar', $viewData);
+      $viewData['events'] = $events;
+      return view('calendar', $viewData);
   }
 
   // <getNewEventFormSnippet>

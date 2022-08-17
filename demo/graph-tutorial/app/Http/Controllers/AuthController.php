@@ -1,14 +1,12 @@
 <?php
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 
 namespace App\Http\Controllers;
-
-use App\Http\Controllers\Controller;
 use App\TokenStore\TokenCache;
-use Illuminate\Http\Request;
 use Microsoft\Graph\Graph;
 use Microsoft\Graph\Model;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -67,7 +65,6 @@ class AuthController extends Controller
         'scopes'                  => config('azure.scopes')
       ]);
 
-      // <StoreTokensSnippet>
       try {
         // Make the token request
         $accessToken = $oauthClient->getAccessToken('authorization_code', [
@@ -86,7 +83,6 @@ class AuthController extends Controller
 
         return redirect('/');
       }
-      // </StoreTokensSnippet>
       catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
         return redirect('/')
           ->with('error', 'Error requesting access token')
@@ -99,12 +95,10 @@ class AuthController extends Controller
       ->with('errorDetail', $request->query('error_description'));
   }
 
-  // <SignOutSnippet>
   public function signout()
   {
     $tokenCache = new TokenCache();
     $tokenCache->clearTokens();
     return redirect('/');
   }
-  // </SignOutSnippet>
 }
