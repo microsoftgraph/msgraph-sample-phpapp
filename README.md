@@ -8,7 +8,7 @@ products:
 languages:
 - php
 ---
-# Microsoft Graph Training Module - Build PHP apps with Microsoft Graph
+# Microsoft Graph sample PHP Laravel web app
 ![License.](https://img.shields.io/badge/license-MIT-green.svg)
 
 This sample uses Microsoft Graph to access data in Office 365 by building a PHP web application.  It uses the Azure AD v2 authentication endpoint to access data in Office 365.
@@ -34,15 +34,7 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
 
     - Set **Name** to `PHP Graph Tutorial`.
     - Set **Supported account types** to **Accounts in any organizational directory and personal Microsoft accounts**.
-    - Under **Redirect URI**, set the first drop-down to `Web` and set the value to `https://localhost:5001/`.
-
-1. Select **Register**. On the **PHP Graph Tutorial** page, copy the value of the **Application (client) ID** and save it, you will need it in the next step.
-
-1. Select **Authentication** under **Manage**. Under **Redirect URIs** add a URI with the value `https://localhost:5001/signin-oidc`.
-
-1. Set the **Logout URL** to `https://localhost:5001/signout-oidc`.
-
-1. Locate the **Implicit grant** section and enable **ID tokens**. Select **Save**.
+    - Under **Redirect URI**, set the first drop-down to `Web` and set the value to `https://localhost:8000/callback`.
 
 1. Select **Certificates & secrets** under **Manage**. Select the **New client secret** button. Enter a value in **Description** and select one of the options for **Expires** and select **Add**.
 
