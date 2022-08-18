@@ -52,7 +52,7 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
 1. Edit the `.env` file and make the following changes.
     1. Replace `YOUR_APP_ID_HERE` with the **Application Id** you got from the App Registration Portal.
     1. Replace `YOUR_APP_PASSWORD_HERE` with the password you got from the App Registration Portal.
-1. In your command-line interface (CLI), navigate to this directory and run the following command to install requirements.
+1. In your command-line interface (CLI), navigate to the **graph-tutorial** directory and run the following command to install requirements.
 
     ```Shell
     composer install

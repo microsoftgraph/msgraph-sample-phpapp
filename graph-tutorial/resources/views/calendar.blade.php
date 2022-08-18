@@ -1,7 +1,6 @@
 <!-- Copyright (c) Microsoft Corporation.
      Licensed under the MIT License. -->
 
-<!-- <CalendarSnippet> -->
 @extends('layout')
 
 @section('content')
@@ -31,4 +30,3 @@
   </tbody>
 </table>
 @endsection
-

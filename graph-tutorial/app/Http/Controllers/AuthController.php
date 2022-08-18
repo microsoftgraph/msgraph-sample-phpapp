@@ -1,12 +1,14 @@
 <?php
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 namespace App\Http\Controllers;
-use App\TokenStore\TokenCache;
-use Microsoft\Graph\Graph;
-use Microsoft\Graph\Model;
 
 use App\Http\Controllers\Controller;
+use App\TokenStore\TokenCache;
 use Illuminate\Http\Request;
+use Microsoft\Graph\Graph;
+use Microsoft\Graph\Model;
 
 class AuthController extends Controller
 {

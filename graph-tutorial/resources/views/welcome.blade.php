@@ -1,7 +1,6 @@
 <!-- Copyright (c) Microsoft Corporation.
      Licensed under the MIT License. -->
 
-<!-- <WelcomeSnippet> -->
 @extends('layout')
 
 @section('content')
@@ -16,4 +15,3 @@
   @endif
 </div>
 @endsection
-<!-- </WelcomeSnippet> -->

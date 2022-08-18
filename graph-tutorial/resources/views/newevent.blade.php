@@ -1,7 +1,6 @@
 <!-- Copyright (c) Microsoft Corporation.
      Licensed under the MIT License. -->
 
-<!-- <NewEventFormSnippet> -->
 @extends('layout')
 
 @section('content')
@@ -44,4 +43,3 @@
   <a class="btn btn-secondary" href={{ action('CalendarController@calendar') }}>Cancel</a>
 </form>
 @endsection
-<!-- </NewEventFormSnippet> -->

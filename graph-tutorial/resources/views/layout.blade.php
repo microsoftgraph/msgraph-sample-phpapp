@@ -1,7 +1,6 @@
 <!-- Copyright (c) Microsoft Corporation.
      Licensed under the MIT License. -->
 
-<!-- <LayoutSnippet> -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -89,4 +88,3 @@
       crossorigin="anonymous"></script>
   </body>
 </html>
-<!-- </LayoutSnippet> -->
