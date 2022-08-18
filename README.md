@@ -8,7 +8,9 @@ products:
 languages:
 - php
 ---
+
 # Microsoft Graph sample PHP Laravel web app
+
 ![License.](https://img.shields.io/badge/license-MIT-green.svg)
 
 This sample uses Microsoft Graph to access data in Office 365 by building a PHP web application.  It uses the Azure AD v2 authentication endpoint to access data in Office 365.
@@ -16,6 +18,7 @@ This sample uses Microsoft Graph to access data in Office 365 by building a PHP 
 ## Prerequisites
 
 To run the completed project in this folder, you need the following:
+
 - Before you start this tutorial, you should have [PHP](http://php.net/downloads.php), [Composer](https://getcomposer.org/), and [Laravel](https://laravel.com/) installed on your development machine.
 - Either a personal Microsoft account with a mailbox on Outlook.com, or a Microsoft work or school account.
 
