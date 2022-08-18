@@ -8,10 +8,10 @@ on:
 
 jobs:
   laravel-tests:
-    
+
     defaults:
       run:
-        working-directory: demo/graph-tutorial
+        working-directory: graph-tutorial
 
     runs-on: ubuntu-latest
 
