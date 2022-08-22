@@ -4,46 +4,33 @@ about: Create a report to help us improve
 title: ''
 labels: bug report, needs triage
 assignees: ''
+
 ---
 
-### Where did you get the code?
-
-- [ ] Downloaded from GitHub
-- [ ] Downloaded from the [Microsoft Graph quick start tool](https://developer.microsoft.com/graph/quick-start)
-- [ ] Followed the tutorial from [Microsoft Graph tutorials](https://docs.microsoft.com/graph/tutorials)
-
-### Describe the bug
-
+**Describe the bug**
 A clear and concise description of what the bug is.
 
-### To Reproduce
-
+**To Reproduce**
 Steps to reproduce the behavior:
-
 1. Go to '...'
-1. Click on '....'
-1. Scroll down to '....'
-1. See error
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
-### Expected behavior
-
+**Expected behavior**
 A clear and concise description of what you expected to happen.
 
-### Screenshots
-
+**Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-### Desktop
+**Desktop (please complete the following information):**
+ - OS: [e.g. iOS]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
 
-- OS: [e.g. iOS]
-- Browser [e.g. chrome, safari]
-- Version [e.g. 22]
+**Dependency versions**
+ - Authentication library (MSAL, etc.) version:
+ - Graph library (Graph SDK, REST library, etc.) version:
 
-### Dependency versions
-
-- Authentication library (MSAL, etc.) version:
-- Graph library (Graph SDK, REST library, etc.) version:
-
-### Additional context
-
+**Additional context**
 Add any other context about the problem here.
