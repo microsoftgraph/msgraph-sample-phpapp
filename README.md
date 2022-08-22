@@ -11,7 +11,7 @@ languages:
 
 # Microsoft Graph sample PHP Laravel web app
 
-![License.](https://img.shields.io/badge/license-MIT-green.svg)
+[![Laravel](https://github.com/microsoftgraph/msgraph-training-phpapp/actions/workflows/laravel.yml/badge.svg)](https://github.com/microsoftgraph/msgraph-training-phpapp/actions/workflows/laravel.yml) ![License.](https://img.shields.io/badge/license-MIT-green.svg)
 
 This sample uses Microsoft Graph to access data in Office 365 by building a PHP web application.  It uses the Azure AD v2 authentication endpoint to access data in Office 365.
 
