@@ -37,7 +37,7 @@ If you don't have a Microsoft account, there are a couple of options to get a fr
 
     - Set **Name** to `PHP Graph Tutorial`.
     - Set **Supported account types** to **Accounts in any organizational directory and personal Microsoft accounts**.
-    - Under **Redirect URI**, set the first drop-down to `Web` and set the value to `https://localhost:8000/callback`.
+    - Under **Redirect URI**, set the first drop-down to `Web` and set the value to `http://localhost:8000/callback`.
 
 1. Select **Certificates & secrets** under **Manage**. Select the **New client secret** button. Enter a value in **Description** and select one of the options for **Expires** and select **Add**.
 
