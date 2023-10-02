@@ -1877,16 +1877,16 @@
         },
         {
             "name": "microsoft/microsoft-graph",
-            "version": "1.106.0",
+            "version": "1.107.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/microsoftgraph/msgraph-sdk-php.git",
-                "reference": "a9f43d74131bb13cb1b5a999101d486b26601b8f"
+                "reference": "63fed05d4d9c348db094f8d8a1d44ff9ce6887c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/a9f43d74131bb13cb1b5a999101d486b26601b8f",
-                "reference": "a9f43d74131bb13cb1b5a999101d486b26601b8f",
+                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/63fed05d4d9c348db094f8d8a1d44ff9ce6887c7",
+                "reference": "63fed05d4d9c348db094f8d8a1d44ff9ce6887c7",
                 "shasum": ""
             },
             "require": {
@@ -1923,9 +1923,9 @@
             "homepage": "https://developer.microsoft.com/en-us/graph",
             "support": {
                 "issues": "https://github.com/microsoftgraph/msgraph-sdk-php/issues",
-                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/1.106.0"
+                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/1.107.0"
             },
-            "time": "2023-09-08T06:02:27+00:00"
+            "time": "2023-09-27T06:43:40+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2704,16 +2704,16 @@
         },
         {
             "name": "psr/http-client",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-client.git",
-                "reference": "0955afe48220520692d2d09f7ab7e0f93ffd6a31"
+                "reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-client/zipball/0955afe48220520692d2d09f7ab7e0f93ffd6a31",
-                "reference": "0955afe48220520692d2d09f7ab7e0f93ffd6a31",
+                "url": "https://api.github.com/repos/php-fig/http-client/zipball/bb5906edc1c324c9a05aa0873d40117941e5fa90",
+                "reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90",
                 "shasum": ""
             },
             "require": {
@@ -2750,9 +2750,9 @@
                 "psr-18"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-client/tree/1.0.2"
+                "source": "https://github.com/php-fig/http-client"
             },
-            "time": "2023-04-10T20:12:12+00:00"
+            "time": "2023-09-23T14:17:50+00:00"
         },
         {
             "name": "psr/http-factory",
